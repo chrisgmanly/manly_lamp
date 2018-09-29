@@ -15,6 +15,10 @@ if [ -f /home/$user/udf_auto_update_git ]; then
     # show current docker containers running
     sudo docker ps
 else
+    # update hostname
+    sudo echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo tee -a /etc/hosts
+    bash
+    
     echo "Cleanup previous files..."
     sudo rm -rf manly_lamp
     echo "Install new scripts..."
@@ -59,10 +63,6 @@ else
     sudo ifconfig
     sudo route -n
 
-    # update hostname
-    sudo echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo tee -a /etc/hosts
-    bash
-
     # Cleanup docker
     sudo docker kill $(sudo docker ps -q)
     sudo docker rm $(sudo docker ps -a -q)
@@ -84,7 +84,7 @@ else
     docker_hackazon_id=$(sudo docker ps | grep hackazon | awk '{print $1}')
 
     # replace old dvwa website with new customer chris dvwa
-    sudo docker cp -r dvwa_chris <container ID>:/
+    sudo docker cp -r manly_lamp/dvwa_chris <container ID>:/
     sudo docker exec -i -t $docker_dvwa_id sh -c "mv /app /app.old"
     sudo docker exec -i -t $docker_dvwa_id sh -c "mv /dvwa_chris /app"
     sudo docker exec -i -t $docker_dvwa_id sh -c "rm /app/.htaccess"
