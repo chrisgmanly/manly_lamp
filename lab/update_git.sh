@@ -70,7 +70,7 @@ else
     sudo docker exec -i -t $docker_dvwa_id sh -c "mv /dvwa_chris /app"
 
     # replace old dvwa website with bank site
-    sudo docker cp bank_chris $docker_bank_id:/
+    sudo docker cp manly_lamp/lab/bank_chris $docker_bank_id:/
     sudo docker exec -i -t $docker_bank_id sh -c "mv /app /app.old"
     sudo docker exec -i -t $docker_bank_id sh -c "mv /bank_chris /app"
  
@@ -82,9 +82,6 @@ fi
 # run only when server boots (through /etc/rc.local as root)
 currentuser=$(whoami)
 if [[  $currentuser == "root" ]]; then
-    # add check if interfaces already configured or not
-    ### HERE HERE HERE
-
     # configure network interfaces
     sudo su - root -c 'echo "auto eth1
     iface eth1 inet static
