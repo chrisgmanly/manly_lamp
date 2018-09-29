@@ -1,0 +1,144 @@
+/***** non-W3C conforming browsers *****/
+
+body {
+   color: black;
+   background-color: #ffffff;
+   font-size: small;
+   font-family: arial, geneva, "lucida grande", verdana, helvetica, sans-serif;
+}
+table, td, th caption, p, h4, h5, h6, ul, ol, li, label, legend, input{
+   font-family: arial, geneva, "lucida grande", verdana, helvetica, sans-serif;
+   font-size: 14px;
+}
+h1, h2, h3, h4, h5, h6 { 
+   font-family: arial, geneva, "lucida grande", helvetica, sans-serif;
+}
+
+
+/***** LINKS *****/
+
+a:link {
+   color: #0000CC;
+   text-decoration: none;
+}
+a:visited {
+   color: #0000CC;
+   text-decoration: none;
+}
+a:hover {
+   color: #0000ff;
+   text-decoration: underline;
+}
+a:active {
+   color: #0000ff;
+   text-decoration: underline;
+}
+
+html { height: 100%;   }
+body {
+   min-height: 100%; 
+   margin: 0;
+   padding: 0;
+   color: black;
+   background-color: #ffffff;
+   font-size: 80%;
+   font-family: arial, geneva, "lucida grande", verdana, helvetica, sans-serif;
+}
+
+div#wrap {
+   background-color: #e0e0e0;
+   min-height: 2000px;
+}
+
+* html body  { height: 100%;}
+* html body div#wrap,
+* html body.popup   { height: 100%;}
+
+h1, h2, h3, h4, h5, h6 { 
+   font-family: arial, geneva, "lucida grande", helvetica, sans-serif;
+}
+
+table, td, th, caption, p, ul, ol, li, label, legend, input { 
+   font-family:  arial, geneva, "lucida grande", verdana, helvetica, sans-serif;
+   font-size: 100%; /* IE5 */
+}
+
+img {border: none;}
+
+
+
+/**** STATIC HEADER *****/
+#header {
+   background: url("../images/header.gif") #ffffff repeat-x left bottom;
+   width: 100%;
+   min-width: 700px;
+   min-height: 92px; 
+   display: block;
+   position: relative;
+   float: left;  
+}
+
+#header h1 {
+   font-size: 26px;
+   color: #003146;
+   line-height: 1em;
+   margin: 0;
+   padding: 5px 0 20px 20px;
+   width: 60%;
+   float: left;
+   border: none;
+   background-color: transparent;
+}
+#header h1 .sitename-sm {
+   font-size: 20px;
+   font-weight: normal;
+   display: block;
+}
+
+#content {
+    height: 100%;
+    float: left;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: auto; 
+}
+
+#infotable {
+	margin-left: auto;
+    margin-right: auto;  
+ }
+
+#infotable table {
+   margin-top: 20px;
+   margin-left: auto;
+   margin-right: auto;
+   width: 100%;
+   border-top: 1px solid silver;
+   border-left: 1px solid silver;
+   border-right: 2px solid white;
+   border-bottom: 2px solid white;
+   border-collapse: collapse; 
+   empty-cells: show;
+   clear: both;
+   padding: 3px 0px 3px 0px;
+}
+
+#infotable tr {
+	
+}
+
+#infotable th {
+   border-bottom: 1px solid silver;
+   padding: 4px 4px 8px 8px;
+   background-color: #e0e0e0;
+}
+
+#infotable td {
+   border-bottom: 1px solid silver;
+   padding: 4px 4px 8px 8px;
+   background-color: #e0e0e0;
+   white-space:nowrap;
+}
+
+

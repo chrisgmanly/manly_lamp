@@ -6,6 +6,8 @@
 ## /home/ubuntu/update_git.sh
 ## chown -R ubuntu:ubuntu /home/ubuntu
 
+user=ubuntu
+
 cd /home/$user
 
 if [ -f /home/$user/udf_auto_update_git ]; then
@@ -16,7 +18,7 @@ else
     echo "Cleanup previous files..."
     rm -rf manly_lamp
     echo "Install new scripts..."
-    git clone https://github.com/chrisgmanly/manly_lamp.git --branch master
+    sudo git clone https://github.com/chrisgmanly/manly_lamp.git --branch master
     echo "Fixing permissions..."
     chmod +x *sh
     
@@ -32,21 +34,21 @@ else
     # configure network interfaces
     sudo echo "auto eth1
     iface eth1 inet static
-    address 10.1.20.200
-    netmask 255.255.255.255
+        address 10.1.20.200
+        netmask 255.255.255.255
         network 10.1.20.0
         broadcast 10.1.20.255
-    gateway 10.1.20.1
+        gateway 10.1.20.1
 
     auto eth1:0
     iface eth1:0 inet static
-    address 10.1.20.27
-    netmask 255.255.255.255
+        address 10.1.20.27
+        netmask 255.255.255.255
 
     auto eth1:1
     iface eth1:1 inet static
-    address 10.1.20.30
-    netmask 255.255.255.255" >> /etc/network/interfaces
+        address 10.1.20.30
+        netmask 255.255.255.255" >> /etc/network/interfaces
 
     sudo /etc/init.d/networking restart
     sudo ifconfig
