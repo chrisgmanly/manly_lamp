@@ -57,7 +57,6 @@ if [[  $currentuser == "root" ]]; then
 
         init 6
     fi
-    sudo echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo tee -a /etc/hosts
 fi
 
 cd /home/$user
