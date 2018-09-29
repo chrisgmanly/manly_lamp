@@ -26,6 +26,8 @@ if [ -f /home/$user/udf_auto_update_git ]; then
     sudo ifconfig
     sudo route -n
 else
+    sudo echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo tee -a /etc/hosts
+    
     echo "Cleanup previous files..."
     sudo rm -rf manly_lamp
     echo "Install new scripts..."
