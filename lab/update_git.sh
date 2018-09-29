@@ -25,8 +25,8 @@ if [ -f /home/$user/udf_auto_update_git ]; then
     # show current docker containers running
     sudo docker ps
     # check IPs
-    sudo ifconfig
-    sudo route -n
+    ip addr show | grep "eth\|inet"
+    route -n
 else
     sudo echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo tee -a /etc/hosts
     
@@ -84,6 +84,9 @@ fi
 # run only when server boots (through /etc/rc.local as root)
 currentuser=$(whoami)
 if [[  $currentuser == "root" ]]; then
+    ## add check if already configured
+    ### HERE
+    
     # configure network interfaces
     sudo su - root -c 'echo "auto eth1
     iface eth1 inet static
