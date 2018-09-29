@@ -31,7 +31,6 @@ if [ -f /home/$user/udf_auto_update_git ]; then
     sudo docker ps
     # check IPs
     ip addr show | grep "eth\|inet"
-    route -n
 else
     sudo echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo tee -a /etc/hosts
     
@@ -60,14 +59,14 @@ else
     # Installing docker images
     # Start containers
     # DVWA
-    sudo docker run -dit -p $dvwa:80:80 --name dvwa --restart=always citizenstig/dvwa
+    sudo docker run -dit -p $dvwa:80:80 --name DVWA --restart=always citizenstig/dvwa
     # Hackazon (All passwords (mysql and hackazon admin) are hackmesilly)
     sudo docker pull mutzel/all-in-one-hackazon:postinstall
     sudo docker run -dit -p $hackazon:80:80 --name hackazon --restart=always mutzel/all-in-one-hackazon:postinstall supervisord -n
     # Demo bank
     sudo docker run -dit -p $bank:80:80 --name bank --restart=always citizenstig/dvwa
 
-    docker_dvwa_id=$(sudo docker ps | grep dvwa | awk '{print $1}')
+    docker_dvwa_id=$(sudo docker ps | grep DVWA | awk '{print $1}')
     docker_bank_id=$(sudo docker ps | grep bank | awk '{print $1}')
     docker_hackazon_id=$(sudo docker ps | grep hackazon | awk '{print $1}')
 
