@@ -23,6 +23,43 @@ bank="10.1.20.31"
 
 user=ubuntu
 
+# run only when server boots (through /etc/rc.local as root)
+currentuser=$(whoami)
+if [[  $currentuser == "root" ]]; then
+    # fix hostname in /etc/hosts
+    sudo echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo tee -a /etc/hosts
+    ## check if eth1 already configured
+    ips_set=$(cat /etc/network/interfaces | grep eth1 | wc -l)
+    if [ $ips_set -eq 0 ]; then
+        # configure network interfaces
+        echo "auto eth1
+        iface eth1 inet static
+            address 10.1.20.200
+            netmask 255.255.255.255
+            network 10.1.20.0
+            broadcast 10.1.20.255
+            gateway 10.1.20.1
+
+        auto eth1:0
+        iface eth1:0 inet static
+            address $dvwa
+            netmask 255.255.255.255
+
+        auto eth1:1
+        iface eth1:1 inet static
+            address $hackazon
+            netmask 255.255.255.255
+
+        auto eth1:2
+        iface eth1:1 inet static
+            address $bank
+            netmask 255.255.255.255" >> /etc/network/interfaces
+
+        init 6
+    fi
+    sudo echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo tee -a /etc/hosts
+fi
+
 cd /home/$user
 
 if [ -f /home/$user/udf_auto_update_git ]; then
@@ -82,41 +119,4 @@ else
     touch udf_auto_update_git
     rm -f last_update_*
     touch last_update_$(date +%Y-%m-%d_%H-%M)
-fi
-
-# run only when server boots (through /etc/rc.local as root)
-currentuser=$(whoami)
-if [[  $currentuser == "root" ]]; then
-    # fix hostname in /etc/hosts
-    sudo echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo tee -a /etc/hosts
-    ## check if eth1 already configured
-    ips_set=$(cat /etc/network/interfaces | grep eth1 | wc -l)
-    if [ $ips_set -eq 0 ]; then
-        # configure network interfaces
-        echo "auto eth1
-        iface eth1 inet static
-            address 10.1.20.200
-            netmask 255.255.255.255
-            network 10.1.20.0
-            broadcast 10.1.20.255
-            gateway 10.1.20.1
-
-        auto eth1:0
-        iface eth1:0 inet static
-            address $dvwa
-            netmask 255.255.255.255
-
-        auto eth1:1
-        iface eth1:1 inet static
-            address $hackazon
-            netmask 255.255.255.255
-
-        auto eth1:2
-        iface eth1:1 inet static
-            address $bank
-            netmask 255.255.255.255" >> /etc/network/interfaces
-
-        init 6
-    fi
-    sudo echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo tee -a /etc/hosts
 fi
