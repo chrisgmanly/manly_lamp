@@ -84,34 +84,34 @@ fi
 # run only when server boots (through /etc/rc.local as root)
 currentuser=$(whoami)
 if [[  $currentuser == "root" ]]; then
-    ## add check if already configured
-    ### HERE
-    
-    # configure network interfaces
-    sudo su - root -c 'echo "auto eth1
-    iface eth1 inet static
-        address 10.1.20.200
-        netmask 255.255.255.255
-        network 10.1.20.0
-        broadcast 10.1.20.255
-        gateway 10.1.20.1
+    ## check if eth1 already configured
+    ips_set=$(cat /etc/network/interfaces | grep eth1 | wc -l)
+    if [ $ips_set -eq 0 ]; then
+        # configure network interfaces
+        echo "auto eth1
+        iface eth1 inet static
+            address 10.1.20.200
+            netmask 255.255.255.255
+            network 10.1.20.0
+            broadcast 10.1.20.255
+            gateway 10.1.20.1
 
-    auto eth1:0
-    iface eth1:0 inet static
-        address 10.1.20.27
-        netmask 255.255.255.255
+        auto eth1:0
+        iface eth1:0 inet static
+            address 10.1.20.27
+            netmask 255.255.255.255
 
-    auto eth1:1
-    iface eth1:1 inet static
-        address 10.1.20.30
-        netmask 255.255.255.255
+        auto eth1:1
+        iface eth1:1 inet static
+            address 10.1.20.30
+            netmask 255.255.255.255
 
-    auto eth1:2
-    iface eth1:1 inet static
-        address 10.1.20.31
-        netmask 255.255.255.255" >> /etc/network/interfaces'
+        auto eth1:2
+        iface eth1:1 inet static
+            address 10.1.20.31
+            netmask 255.255.255.255" >> /etc/network/interfaces
 
+        init 6
+    fi
     sudo echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo tee -a /etc/hosts
-
-    sudo /etc/init.d/networking restart
 fi
