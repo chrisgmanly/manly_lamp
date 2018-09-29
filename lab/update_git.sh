@@ -36,7 +36,7 @@ else
     ### HERE HERE HERE
 
     # configure network interfaces
-    sudo echo "auto eth1
+    sudo su - root -c 'echo "auto eth1
     iface eth1 inet static
         address 10.1.20.200
         netmask 255.255.255.255
@@ -57,7 +57,7 @@ else
     auto eth1:2
     iface eth1:1 inet static
         address 10.1.20.31
-        netmask 255.255.255.255" >> /etc/network/interfaces
+        netmask 255.255.255.255" >> /etc/network/interfaces'
 
     sudo echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo tee -a /etc/hosts
 
