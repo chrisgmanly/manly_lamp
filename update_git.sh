@@ -15,10 +15,6 @@ if [ -f /home/$user/udf_auto_update_git ]; then
     # show current docker containers running
     sudo docker ps
 else
-    # update hostname
-    sudo echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo tee -a /etc/hosts
-    bash
-    
     echo "Cleanup previous files..."
     sudo rm -rf manly_lamp
     echo "Install new scripts..."
@@ -58,6 +54,8 @@ else
     iface eth1:1 inet static
         address 10.1.20.31
         netmask 255.255.255.255" >> /etc/network/interfaces
+
+    sudo echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo tee -a /etc/hosts
 
     sudo /etc/init.d/networking restart
     sudo ifconfig
