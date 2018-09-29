@@ -30,7 +30,7 @@ $page[ 'body' ] .= "
 	<td valign=top><img src=\"".DVWA_WEB_PAGE_TO_ROOT."hackable/users/bobsmith.jpg\" /><br>Bob Smith</td>
 	<td valign=top><img src=\"".DVWA_WEB_PAGE_TO_ROOT."hackable/users/fred.gif\" /><br>Fred Jones</td>
 	<td valign=top><img src=\"".DVWA_WEB_PAGE_TO_ROOT."hackable/users/juliemiller.jpg\" /><br>Julie Miller</td>
-	<td valign=top><img src=\"".DVWA_WEB_PAGE_TO_ROOT."hackable/users/locoh-donou.jpg\" /><br>Francios L</td>
+	<td valign=top><img src=\"".DVWA_WEB_PAGE_TO_ROOT."hackable/users/locoh-donou.jpg\" /><br>François L</td>
 	<td valign=top><img src=\"".DVWA_WEB_PAGE_TO_ROOT."hackable/users/chris.gif\" /><br>Manly</td>
 	</tr></table><br/>
 
