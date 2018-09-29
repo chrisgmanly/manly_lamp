@@ -16,6 +16,11 @@
 ## then reboot:
 # sudo init 6
 
+## CONFIG IPs
+dvwa="10.1.20.27"
+hackazon="10.1.20.30"
+bank="10.1.20.31"
+
 user=ubuntu
 
 cd /home/$user
@@ -55,12 +60,12 @@ else
     # Installing docker images
     # Start containers
     # DVWA
-    sudo docker run -dit -p 10.1.20.27:80:80 --name dvwa --restart=always citizenstig/dvwa
+    sudo docker run -dit -p $dvwa:80:80 --name dvwa --restart=always citizenstig/dvwa
     # Hackazon (All passwords (mysql and hackazon admin) are hackmesilly)
     sudo docker pull mutzel/all-in-one-hackazon:postinstall
-    sudo docker run -dit -p 10.1.20.30:80:80 --name hackazon --restart=always mutzel/all-in-one-hackazon:postinstall supervisord -n
+    sudo docker run -dit -p $hackazon:80:80 --name hackazon --restart=always mutzel/all-in-one-hackazon:postinstall supervisord -n
     # Demo bank
-    sudo docker run -dit -p 10.1.20.31:80:80 --name bank --restart=always citizenstig/dvwa
+    sudo docker run -dit -p $bank:80:80 --name bank --restart=always citizenstig/dvwa
 
     docker_dvwa_id=$(sudo docker ps | grep dvwa | awk '{print $1}')
     docker_bank_id=$(sudo docker ps | grep bank | awk '{print $1}')
@@ -98,17 +103,17 @@ if [[  $currentuser == "root" ]]; then
 
         auto eth1:0
         iface eth1:0 inet static
-            address 10.1.20.27
+            address $dvwa
             netmask 255.255.255.255
 
         auto eth1:1
         iface eth1:1 inet static
-            address 10.1.20.30
+            address $hackazon
             netmask 255.255.255.255
 
         auto eth1:2
         iface eth1:1 inet static
-            address 10.1.20.31
+            address $bank
             netmask 255.255.255.255" >> /etc/network/interfaces
 
         init 6
