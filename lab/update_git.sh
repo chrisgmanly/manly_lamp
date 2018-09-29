@@ -4,12 +4,14 @@
 
 ## INSTALL:
 ## run:
+# cd /home/ubuntu
 # sudo git clone https://github.com/chrisgmanly/manly_lamp.git --branch master
-# sudo chmod +x ./manly_lamp/lab/*sh
+# sudo cp manly_lamp/lab/update_git.sh .
+# sudo chmod +x update_git.sh
 ## Add following in /etc/rc.local
 # sudo vi /etc/rc.local
-# /home/ubuntu/manly_lamp/lab/update_git.sh
-# chown -R ubuntu:ubuntu /home/ubuntu
+# /home/ubuntu/update_git.sh
+# sudo chown -R ubuntu:ubuntu /home/ubuntu
 ##
 ## then reboot:
 # sudo init 6
