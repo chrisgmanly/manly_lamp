@@ -48,11 +48,20 @@ else
     auto eth1:1
     iface eth1:1 inet static
         address 10.1.20.30
+        netmask 255.255.255.255
+
+    auto eth1:2
+    iface eth1:1 inet static
+        address 10.1.20.31
         netmask 255.255.255.255" >> /etc/network/interfaces
 
     sudo /etc/init.d/networking restart
     sudo ifconfig
     sudo route -n
+
+    # update hostname
+    sudo echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo tee -a /etc/hosts
+    bash
 
     # Cleanup docker
     sudo docker kill $(sudo docker ps -q)
