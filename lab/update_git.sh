@@ -10,7 +10,7 @@
 # sudo chmod +x update_git.sh
 ## Add following in /etc/rc.local
 # sudo vi /etc/rc.local
-# /home/ubuntu/update_git.sh
+# /home/ubuntu/update_git.sh > /tmp/update_git.log
 # sudo chown -R ubuntu:ubuntu /home/ubuntu
 ##
 ## then reboot:
@@ -30,10 +30,9 @@ if [ -f /home/$user/udf_auto_update_git ]; then
     # show current docker containers running
     sudo docker ps
     # check IPs
+    echo
     ip addr show | grep "eth\|inet"
 else
-    sudo echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo tee -a /etc/hosts
-    
     echo "Cleanup previous files..."
     sudo rm -rf manly_lamp
     echo "Install new scripts..."
@@ -88,6 +87,8 @@ fi
 # run only when server boots (through /etc/rc.local as root)
 currentuser=$(whoami)
 if [[  $currentuser == "root" ]]; then
+    # fix hostname in /etc/hosts
+    sudo echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo tee -a /etc/hosts
     ## check if eth1 already configured
     ips_set=$(cat /etc/network/interfaces | grep eth1 | wc -l)
     if [ $ips_set -eq 0 ]; then
