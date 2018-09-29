@@ -16,11 +16,11 @@ if [ -f /home/$user/udf_auto_update_git ]; then
     sudo docker ps
 else
     echo "Cleanup previous files..."
-    rm -rf manly_lamp
+    sudo rm -rf manly_lamp
     echo "Install new scripts..."
     sudo git clone https://github.com/chrisgmanly/manly_lamp.git --branch master
     echo "Fixing permissions..."
-    chmod +x *sh
+    sudo chmod +x *sh
     
     # install docker
     sudo apt-get install apt-transport-https ca-certificates curl software-properties-common -y
@@ -63,12 +63,12 @@ else
     # Installing docker images
     # Start containers
     # DVWA
-    docker run -dit -p 10.1.20.27:80:80 --name dvwa --restart=always citizenstig/dvwa
+    sudo docker run -dit -p 10.1.20.27:80:80 --name dvwa --restart=always citizenstig/dvwa
     # Hackazon (All passwords (mysql and hackazon admin) are hackmesilly)
-    docker pull mutzel/all-in-one-hackazon:postinstall
-    docker run -dit -p 10.1.20.30:80:80 --name hackazon --restart=always mutzel/all-in-one-hackazon:postinstall supervisord -n
+    sudo docker pull mutzel/all-in-one-hackazon:postinstall
+    sudo docker run -dit -p 10.1.20.30:80:80 --name hackazon --restart=always mutzel/all-in-one-hackazon:postinstall supervisord -n
     # Demo bank
-    docker run -dit -p 10.1.20.31:80:80 --name bank --restart=always citizenstig/dvwa
+    sudo docker run -dit -p 10.1.20.31:80:80 --name bank --restart=always citizenstig/dvwa
 
     docker_dvwa_id=$(sudo docker ps | grep dvwa | awk '{print $1}')
     docker_bank_id=$(sudo docker ps | grep bank | awk '{print $1}')
