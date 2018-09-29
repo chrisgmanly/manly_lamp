@@ -32,6 +32,9 @@ else
 
     sudo /etc/init.d/docker status
 
+    # add check if interfaces already configured or not
+    ### HERE HERE HERE
+    
     # configure network interfaces
     sudo echo "auto eth1
     iface eth1 inet static
