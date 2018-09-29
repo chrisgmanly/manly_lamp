@@ -19,9 +19,9 @@ else
     sudo rm -rf manly_lamp
     echo "Install new scripts..."
     sudo git clone https://github.com/chrisgmanly/manly_lamp.git --branch master
+    sudo chmod +x ./manly_lamp/lab/*sh
     sudo cp manly_lamp/lab/update_git.sh .
     echo "Fixing permissions..."
-    sudo chmod +x *sh
     
     # install docker
     sudo apt-get install apt-transport-https ca-certificates curl software-properties-common -y
@@ -69,7 +69,7 @@ else
     sudo docker kill $(sudo docker ps -q)
     sudo docker rm $(sudo docker ps -a -q)
     sudo docker rmi $(sudo docker images -q) -f
-    sudo ./scripts/cleanup-docker.sh
+    sudo ./manly_lamp/lab/cleanup-docker.sh
 
     # Installing docker images
     # Start containers
@@ -93,7 +93,7 @@ else
     sudo docker exec -i -t $docker_dvwa_id sh -c "cp /app.old/config/config.inc.php /app/config/"
 
     # replace old dvwa website with bank site
-    sudo docker cp -r bank_chris <container ID>:/
+    sudo docker cp bank_chris $docker_bank_id:/
     sudo docker exec -i -t $docker_bank_id sh -c "mv /app /app.old"
     sudo docker exec -i -t $docker_bank_id sh -c "mv /bank_chris /app"
  
