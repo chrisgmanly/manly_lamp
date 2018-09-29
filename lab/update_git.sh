@@ -34,7 +34,7 @@ else
 
     # add check if interfaces already configured or not
     ### HERE HERE HERE
-    
+
     # configure network interfaces
     sudo echo "auto eth1
     iface eth1 inet static
@@ -86,7 +86,7 @@ else
     docker_hackazon_id=$(sudo docker ps | grep hackazon | awk '{print $1}')
 
     # replace old dvwa website with new customer chris dvwa
-    sudo docker cp -r manly_lamp/lab/dvwa_chris $docker_dvwa_id:/
+    sudo docker cp manly_lamp/lab/dvwa_chris $docker_dvwa_id:/
     sudo docker exec -i -t $docker_dvwa_id sh -c "mv /app /app.old"
     sudo docker exec -i -t $docker_dvwa_id sh -c "mv /dvwa_chris /app"
     sudo docker exec -i -t $docker_dvwa_id sh -c "rm /app/.htaccess"
