@@ -26,6 +26,9 @@ user=ubuntu
 # run only when server boots (through /etc/rc.local as root)
 currentuser=$(whoami)
 if [[  $currentuser == "root" ]]; then
+    # fix hostname in /etc/hosts
+    sudo echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo tee -a /etc/hosts
+
     ## check if eth1 already configured
     ips_set=$(cat /etc/network/interfaces | grep eth1 | wc -l)
     if [ $ips_set -eq 0 ]; then
@@ -52,9 +55,6 @@ if [[  $currentuser == "root" ]]; then
         iface eth1:1 inet static
             address $bank
             netmask 255.255.255.255" >> /etc/network/interfaces
-
-        # fix hostname in /etc/hosts
-        sudo echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo tee -a /etc/hosts
 
         init 6
     fi
