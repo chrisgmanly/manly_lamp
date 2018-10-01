@@ -32,6 +32,15 @@ if [[  $currentuser == "root" ]]; then
     ## check if eth1 already configured
     ips_set=$(cat /etc/network/interfaces | grep eth1 | wc -l)
     if [ $ips_set -eq 0 ]; then
+         # install docker
+        sudo apt-get install apt-transport-https ca-certificates curl software-properties-common -y
+        sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+        sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+        sudo apt-get update
+        sudo apt-get install docker-ce -y
+
+        sudo /etc/init.d/docker status
+        
         # configure network interfaces
         echo "auto eth1
         iface eth1 inet static
@@ -77,16 +86,7 @@ else
     echo "Fixing permissions..."
     sudo chmod +x ./manly_lamp/lab/*sh
 
-    # install docker
-    sudo apt-get install apt-transport-https ca-certificates curl software-properties-common -y
-    sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-    sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-    sudo apt-get update
-    sudo apt-get install docker-ce -y
-
-    sudo /etc/init.d/docker status
-
-    # Cleanup docker
+    # Cleanup dockers
     sudo docker kill $(sudo docker ps -q)
     sudo docker rm $(sudo docker ps -a -q)
     sudo docker rmi $(sudo docker images -q) -f
