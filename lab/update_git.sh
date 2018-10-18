@@ -6,14 +6,16 @@
 ## INSTALL:
 ## Add following in /etc/rc.local
 ## sudo vi /etc/rc.local
-# cd /home/ubuntu/
-# rm -rf /home/ubuntu/manly_lamp
+#
+# cd /home/ubuntu
+# rm -rf /home/ubuntu/manly_lamp update_git.sh
 # git clone https://github.com/chrisgmanly/manly_lamp.git --branch master
 # cp /home/ubuntu/manly_lamp/lab/update_git.sh /home/ubuntu
 # chmod +x /home/ubuntu/update_git.sh
 # chmod +x /home/ubuntu/manly_lamp/lab/*sh
-# /home/ubuntu/update_git.sh >> /tmp/update_git.log
+# /home/ubuntu/update_git.sh >> /home/ubuntu/update_git.log
 # chown -R ubuntu:ubuntu /home/ubuntu
+#
 ## then reboot:
 # sudo init 6
 
@@ -121,7 +123,8 @@ if [ -f /home/$user/udf_auto_update_git ]; then
     sudo docker ps
     # check IPs
     echo
-    ip addr show | grep "eth\|inet"
+    echo
+    ip addr show eth1
 else
     # Cleanup dockers
     sudo docker kill $(sudo docker ps -q)
@@ -152,6 +155,10 @@ else
     sudo docker cp manly_lamp/lab/bank_chris $docker_bank_id:/
     sudo docker exec -i -t $docker_bank_id sh -c "mv /app /app.old"
     sudo docker exec -i -t $docker_bank_id sh -c "mv /bank_chris /app"
+    
+    ## ADD SERVER 1 to 5
+    ## ADD CSRF
+    ## ADD PHISHING
  
     touch udf_auto_update_git
     rm -f last_update_*
