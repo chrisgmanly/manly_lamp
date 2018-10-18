@@ -18,9 +18,17 @@
 # sudo init 6
 
 ## CONFIG IPs
+ubuntu="10.1.20.200"
 dvwa="10.1.20.27"
 hackazon="10.1.20.30"
 bank="10.1.20.31"
+server1="10.1.20.32"
+server2="10.1.20.33"
+server3="10.1.20.34"
+server4="10.1.20.35"
+server5="10.1.20.36"
+csrf="10.1.20.37"
+phishing="10.1.20.38"
 
 user=ubuntu
 
@@ -45,7 +53,7 @@ if [[  $currentuser == "root" ]]; then
         # configure network interfaces
         echo "auto eth1
         iface eth1 inet static
-            address 10.1.20.200
+            address $ubuntu
             netmask 255.255.255.255
             network 10.1.20.0
             broadcast 10.1.20.255
@@ -60,11 +68,46 @@ if [[  $currentuser == "root" ]]; then
         iface eth1:1 inet static
             address $hackazon
             netmask 255.255.255.255
-
+            
         auto eth1:2
-        iface eth1:1 inet static
+        iface eth1:2 inet static
             address $bank
-            netmask 255.255.255.255" >> /etc/network/interfaces
+            netmask 255.255.255.255
+
+        auto eth1:3
+        iface eth1:3 inet static
+            address $server1
+            netmask 255.255.255.255
+            
+        auto eth1:4
+        iface eth1:4 inet static
+            address $server2
+            netmask 255.255.255.255
+            
+         auto eth1:5
+        iface eth1:5 inet static
+            address $server3
+            netmask 255.255.255.255
+
+        auto eth1:6
+        iface eth1:6 inet static
+            address $server4
+            netmask 255.255.255.255
+        
+        auto eth1:7
+        iface eth1:7 inet static
+            address $server5
+            netmask 255.255.255.255
+            
+        auto eth1:8
+        iface eth1:8 inet static
+            address $csrf
+            netmask 255.255.255.255
+            
+        auto eth1:9
+        iface eth1:9 inet static
+            address $phishing
+            netmask 255.255.255.255 >> /etc/network/interfaces
 
         init 6
     fi
