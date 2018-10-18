@@ -5,15 +5,12 @@
 ## INSTALL:
 ## Add following in /etc/rc.local
 ## sudo vi /etc/rc.local
+# cd /home/ubuntu/
 # git clone https://github.com/chrisgmanly/manly_lamp.git --branch master
 # cp /home/ubuntu/manly_lamp/lab/update_git.sh /home/ubuntu
 # chmod +x /home/ubuntu/update_git.sh
-# /home/ubuntu/update_git.sh > /tmp/update_git.log
+# /home/ubuntu/update_git.sh >> /tmp/update_git.log
 # chown -R ubuntu:ubuntu /home/ubuntu
-
-# /home/ubuntu/update_git.sh > /tmp/update_git.log
-# sudo chown -R ubuntu:ubuntu /home/ubuntu
-##
 ## then reboot:
 # sudo init 6
 
