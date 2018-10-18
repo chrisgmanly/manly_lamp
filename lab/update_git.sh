@@ -7,9 +7,11 @@
 ## Add following in /etc/rc.local
 ## sudo vi /etc/rc.local
 # cd /home/ubuntu/
+# rm -rf /home/ubuntu/manly_lamp
 # git clone https://github.com/chrisgmanly/manly_lamp.git --branch master
 # cp /home/ubuntu/manly_lamp/lab/update_git.sh /home/ubuntu
 # chmod +x /home/ubuntu/update_git.sh
+# chmod +x /home/ubuntu/manly_lamp/lab/*sh
 # /home/ubuntu/update_git.sh >> /tmp/update_git.log
 # chown -R ubuntu:ubuntu /home/ubuntu
 ## then reboot:
@@ -78,13 +80,6 @@ if [ -f /home/$user/udf_auto_update_git ]; then
     echo
     ip addr show | grep "eth\|inet"
 else
-    echo "Cleanup previous files..."
-    sudo rm -rf manly_lamp
-    echo "Install new scripts..."
-    sudo git clone https://github.com/chrisgmanly/manly_lamp.git --branch master
-    echo "Fixing permissions..."
-    sudo chmod +x ./manly_lamp/lab/*sh
-
     # Cleanup dockers
     sudo docker kill $(sudo docker ps -q)
     sudo docker rm $(sudo docker ps -a -q)
