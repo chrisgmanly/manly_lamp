@@ -36,6 +36,12 @@ sudo init 6
 ./update_git.sh
 ```
 
+5. In case you need to force the re-deployment of the github repository
+```
+rm udf_auto_update_git
+sudo init 6
+```
+
 # Troubleshooting
 
 Log file: /home/ubuntu/update_git.log
