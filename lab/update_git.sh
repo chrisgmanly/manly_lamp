@@ -21,7 +21,7 @@ if [[  $currentuser == "root" ]]; then
     # fix hostname in /etc/hosts
     sudo echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo tee -a /etc/hosts
 
-    ## check if eth1 already configured
+    ## check if eth1 already configured, if not install docker and configure IP addresses
     ips_set=$(cat /etc/network/interfaces | grep eth1 | wc -l)
     if [ $ips_set -eq 0 ]; then
          # install docker
@@ -99,7 +99,8 @@ fi
 cd /home/$user
 
 if [ -f /home/$user/udf_auto_update_git ]; then
-    echo -e "\nIn order to force the scripts/tools updates, delete udf_auto_update_git and re-run update_git.sh (optional).\n"
+    # Show status
+    echo -e "\nIn order to force the scripts/tools updates, delete udf_auto_update_git and reboot.\n"
     # show current docker containers running
     sudo docker ps
     # check IPs
@@ -107,6 +108,7 @@ if [ -f /home/$user/udf_auto_update_git ]; then
     echo
     ip addr show eth1
 else
+    # If script after a reboot, it will run from /etc/rc.local and do a clone git repo first.
     # Cleanup dockers
     sudo docker kill $(sudo docker ps -q)
     sudo docker rm $(sudo docker ps -a -q)
