@@ -1,18 +1,17 @@
-# manly_lamp
 Chris Manly's LAMP server for SE and partner SE training
 
-# INSTALLATION INSTRUCTIONS
+# Installation Instructions
 
 - This script has been tested only with UDF image "Ubuntu 16.04 LTS Server – 2018-Jan-23"
 - DO NOT FORGET TO BIND TO ADDITIONAL NETWORK INTERFACE IN UDF/RAVELLO
 
-Edit /etc/rc.local
+1. Edit /etc/rc.local
 
 ```
 sudo vi /etc/rc.local
 ```
 
-Add following in /etc/rc.local
+2. Add following in /etc/rc.local
 
 ```
 cd /home/ubuntu
@@ -25,7 +24,8 @@ chmod +x /home/ubuntu/manly_lamp/lab/*sh
 chown -R ubuntu:ubuntu /home/ubuntu
 ```
 
-## Reboot:
+3. Reboot
+
 ```
 sudo init 6
 ```
