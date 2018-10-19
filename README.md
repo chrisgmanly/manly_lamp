@@ -4,6 +4,7 @@ Chris Manly's LAMP server for SE and partner SE training
 
 - This script has been tested only with UDF image "Ubuntu 16.04 LTS Server – 2018-Jan-23"
 - Do not forget to bind additional network interfaces in UDF/Ravello
+- Add SSH Access to the Ubuntu server in UDF
 
 1. Edit /etc/rc.local
 
