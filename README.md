@@ -1,10 +1,10 @@
 # manly_lamp
 Chris Manly's LAMP server for SE and partner SE training
 
-## This script has been tested only with UDF image "Ubuntu 16.04 LTS Server – 2018-Jan-23"
-## DO NOT FORGET TO BIND TO ADDITIONAL NETWORK INTERFACE IN UDF/RAVELLO
+# INSTALLATION INSTRUCTIONS
 
-## INSTALLATION INSTRUCTIONS
+- This script has been tested only with UDF image "Ubuntu 16.04 LTS Server – 2018-Jan-23"
+- DO NOT FORGET TO BIND TO ADDITIONAL NETWORK INTERFACE IN UDF/RAVELLO
 
 Edit /etc/rc.local
 
