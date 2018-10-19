@@ -30,3 +30,12 @@ chown -R ubuntu:ubuntu /home/ubuntu
 ```
 sudo init 6
 ```
+
+4. Check if docker containers are running and if the IP addresses are configured properly
+```
+./update_git.sh
+```
+
+# Troubleshooting
+
+Log file: /home/ubuntu/update_git.log
