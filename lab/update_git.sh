@@ -90,7 +90,7 @@ if [[  $currentuser == "root" ]]; then
         auto eth1:9
         iface eth1:9 inet static
             address $phishing
-            netmask 255.255.255.255 >> /etc/network/interfaces
+            netmask 255.255.255.255" >> /etc/network/interfaces
 
         init 6
     fi
